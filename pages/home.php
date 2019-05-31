@@ -16,32 +16,7 @@
 
 </head>
 <body>
-	<nav class="navbar navbar-dark bg-dark">
-	<div class="container">
-		<a class="navbar-brand text-light" href="/pages/home.php">Uni Escambo</a>
-		<?php
-			include $_SERVER['DOCUMENT_ROOT']."/classes/student.php";
-			session_start();
-
-			if($_SESSION["student"]->isOnline == TRUE){
-				$name = $_SESSION["student"]->getName();
-				$pos = stripos($name, " ") - strlen($name);
-				$firstname = ucfirst(substr($name, 0, $pos)); ?>
-		<div class="form-inline navbar-right">
-			<span class="navbar-text mr-2">
-				<?php echo "Olá, " . $firstname . "."; ?>
-			</span>
-			<a class="btn btn-danger" href="/index.php" role="button">Sair</a>
-		</div>
-		<?php } ?>
-		<?php if($_SESSION["student"]->isOnline == FALSE){ ?>
-		<div class="form-inline navbar-right">
-			<a class="btn btn-outline-success mr-1" href="/pages/login.php" role="button">Login</a>
-			<a class="btn btn-success" href="/pages/signUp.php" role="button">Cadastre-se</a>
-		</div>
-		<?php } ?>
-	</div>
-	</nav>
+	<?php include $_SERVER['DOCUMENT_ROOT']."/pages/navbar.php"; ?>
 
 	<div class="container">
 		<div class="row">
@@ -54,8 +29,6 @@
 		</div>
 	</div>
 
-	
-	
 </body>
 </html>
 

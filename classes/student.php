@@ -42,10 +42,10 @@ class Student{
 
 	function login($nickmail, $password){
 		if(stripos($nickmail, "@") == FALSE){
-			$command = "SELECT * FROM Student WHERE nickname = '$nickname'";
+			$command = "SELECT * FROM Student WHERE nickname = '$nickmail'";
 		}
 		else{
-			$command = "SELECT * FROM Student WHERE mail = '$mail'";
+			$command = "SELECT * FROM Student WHERE mail = '$nickmail'";
 		}
 
 		$db = new Database();
@@ -69,7 +69,7 @@ class Student{
 	}
 
 	function signUp($name, $nickname, $password, $mail){
-		if($this->alreadyExists($nickname, $password) == FALSE){
+		if($this->nicknameExists($nickname, $password) == FALSE){
 			$db = new Database();
 			$command = "INSERT INTO Student(name,nickname,password,mail) VALUES"
 		 		 	 . "('$name','$nickname','$password','$mail')";
@@ -82,7 +82,7 @@ class Student{
 		 	$this->isOnline = TRUE;
 		}
 		else{
-			echo "O usuário já existe";
+			$_SESSION['error'] = TRUE;
 		}
 	}
 }
