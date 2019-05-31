@@ -14,22 +14,10 @@ class Student{
 
 	function getName() { return $this->name; }
 
-	function nicknameExists($nickname, $password){
+	# Verify if this user already exists on the database
+	function alreadyExists($nickname, $mail){
 		$db = new Database();
-		$command = "SELECT * FROM Student WHERE nickname = '$nickname'";
-		$result = $db->runCommand($command);
-
-		if($result == TRUE && $result->num_rows == 1){
-			return TRUE;
-		}
-		else{
-			return FALSE;
-		}
-	}
-
-	function mailExists($mail, $password){
-		$db = new Database();
-		$command = "SELECT * FROM Student WHERE mail = '$mail'";
+		$command = "SELECT * FROM Student WHERE nickname = '$nickname' || mail = '$mail'";
 		$result = $db->runCommand($command);
 
 		if($result == TRUE && $result->num_rows == 1){
@@ -42,10 +30,10 @@ class Student{
 
 	function login($nickmail, $password){
 		if(stripos($nickmail, "@") == FALSE){
-			$command = "SELECT * FROM Student WHERE nickname = '$nickmail'";
+			$command = "SELECT * FROM Student WHERE nickname = '$nickmail' && password = '$password'";
 		}
 		else{
-			$command = "SELECT * FROM Student WHERE mail = '$nickmail'";
+			$command = "SELECT * FROM Student WHERE mail = '$nickmail' && password = '$password'";
 		}
 
 		$db = new Database();
@@ -69,7 +57,7 @@ class Student{
 	}
 
 	function signUp($name, $nickname, $password, $mail){
-		if($this->nicknameExists($nickname, $password) == FALSE){
+		if($this->alreadyExists($nickname, $mail) == FALSE){
 			$db = new Database();
 			$command = "INSERT INTO Student(name,nickname,password,mail) VALUES"
 		 		 	 . "('$name','$nickname','$password','$mail')";

@@ -15,17 +15,26 @@
 	<title>Cadastro - Uni Escambo</title>
 </head>
 <body>
-	<?php include $_SERVER['DOCUMENT_ROOT']."/pages/navbar.php"; ?>
+	<!-- Load navbar -->
+	<?php 
+		include $_SERVER['DOCUMENT_ROOT']."/pages/navbar.php";
+
+		$class = "form-control mx-auto my-1";
+		if($_SESSION['error'] == TRUE){
+			$class .= " is-invalid";
+			$_SESSION['error'] = FALSE;
+		}
+	?>
 
 	<div class="container">
 	<div class="row">
 	<div class="col-lg-12">
 	<div class="content">
 	<form action="/actions/signUpStudent.php" method="POST">
-		<input type="text" class="form-control mx-auto my-1" name="inputName" placeholder="Nome Completo" required>
-		<input type="text" class="form-control mx-auto my-1" name="inputNickname" placeholder="Apelido" required>
-		<input type="password" class="form-control mx-auto my-1" name="inputPassword" placeholder="Senha" required>
-		<input type="email" class="form-control mx-auto my-1" name="inputEmail" placeholder="Email">
+		<input type="text" class="<?php echo $class?>" name="inputName" placeholder="Nome Completo" required>
+		<input type="text" class="<?php echo $class?>" name="inputNickname" placeholder="Apelido" required>
+		<input type="password" class="<?php echo $class?>" name="inputPassword" placeholder="Senha" required>
+		<input type="email" class="<?php echo $class?>" name="inputEmail" placeholder="Email">
   		<button type="submit" class="btn btn-primary" required>Cadastrar</button>
 	</form>
  	</div>

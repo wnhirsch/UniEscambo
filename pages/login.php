@@ -15,20 +15,24 @@
 	<title>Login - Uni Escambo</title>
 </head>
 <body>
-	<?php include $_SERVER['DOCUMENT_ROOT']."/pages/navbar.php"; ?>
+	<!-- Load navbar -->
+	<?php 
+		include $_SERVER['DOCUMENT_ROOT']."/pages/navbar.php";
+
+		$class = "form-control mx-auto my-1";
+		if($_SESSION['error'] == TRUE){
+			$class .= " is-invalid";
+			$_SESSION['error'] = FALSE;
+		}
+	?>
 
 	<div class="container">
 	<div class="row">
 	<div class="col-lg-12">
 	<div class="content">
 	<form action="/actions/loginStudent.php" method="POST">
-	<?php if($_SESSION['error'] == FALSE){ ?>
-		<input type="text" class="form-control mx-auto my-1" name="inputNickmail" placeholder="Email / Apelido" required>
-    	<input type="password" class="form-control mx-auto my-1" name="inputPassword" placeholder="Senha" required>
-    <?php } else { ?>
-		<input type="text" class="form-control mx-auto my-1 is-invalid" name="inputNickmail" placeholder="Email / Apelido" required>
-    	<input type="password" class="form-control mx-auto my-1 is-invalid" name="inputPassword" placeholder="Senha" required>
-  	<?php $_SESSION['error'] = FALSE; } ?>
+		<input type="text" class="<?php echo $class?>" name="inputNickmail" placeholder="Email / Apelido" required>
+    	<input type="password" class="<?php echo $class?>" name="inputPassword" placeholder="Senha" required>
 		<button id="invalidLogin" type="submit" class="btn btn-primary">Entrar</button>
 	</form>
  	</div>

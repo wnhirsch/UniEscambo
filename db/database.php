@@ -21,13 +21,12 @@ class Database{
 		}
 
 		$result = $conn->query($command);
-
 		if ($result == FALSE){
 		    echo "Error: " . $command . "<br>" . $conn->error;
 		}
 
-		return $result;
 		$conn->close();
+		return $result;
 	}
 }
 

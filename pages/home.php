@@ -16,6 +16,7 @@
 
 </head>
 <body>
+	<!-- Load navbar -->
 	<?php include $_SERVER['DOCUMENT_ROOT']."/pages/navbar.php"; ?>
 
 	<div class="container">

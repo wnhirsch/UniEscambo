@@ -15,6 +15,7 @@
 	<title>Perfil - Uni Escambo</title>
 </head>
 <body>
+	<!-- Load navbar -->
 	<?php include $_SERVER['DOCUMENT_ROOT']."/pages/navbar.php"; ?>
 
  	
