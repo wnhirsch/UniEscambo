@@ -1,0 +1,19 @@
+body {
+	background-image: url("http://localhost/media/home_back.jpg");
+	background-size: cover;
+	background-position: center;
+	font-family: 'Lato', sans-serif;
+}
+
+html {
+	height: 100%;
+}
+
+.content {
+	padding-top: 25%;
+	text-align: center;
+}
+
+.form-control {
+	width: 25%;
+}
