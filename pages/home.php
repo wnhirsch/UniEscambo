@@ -11,20 +11,34 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 
 	<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="style.css">
 	<title>Home - Uni Escambo</title>
+
+	<link rel="stylesheet" href="style.css">
+	<style type="text/css">
+		.content {
+			padding-top: 20%;
+			text-align: center;
+			text-shadow: 3px 3px 10px rgba(0, 0, 0, 1);
+		}
+		h1 {
+			font-weight: bold;
+		}
+	</style>
 
 </head>
 <body>
-	<!-- Load navbar -->
-	<?php include $_SERVER['DOCUMENT_ROOT']."/pages/navbar.php"; ?>
+	<!-- Load navbar and Background-->
+	<?php
+		include $_SERVER['DOCUMENT_ROOT']."/pages/navbar.php"; 
+		include $_SERVER['DOCUMENT_ROOT']."/pages/back.php"; 
+	?>
 
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="content">
  					<h1 class="text-light">Uni Escambo</h1>
- 					<h3 class="text-light">~~frase de efeito~~</h3>
+ 					<h3 class="text-light">Ao seu lado nos momentos que mais precisa</h3>
  				</div>
 			</div>
 		</div>

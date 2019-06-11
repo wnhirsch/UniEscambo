@@ -11,10 +11,12 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	
 	<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="style.css">
 	<title>Perfil - Uni Escambo</title>
+
+	<link rel="stylesheet" href="style.css">
+
 </head>
-<body>
+<body class="bg-light">
 	<!-- Load navbar -->
 	<?php include $_SERVER['DOCUMENT_ROOT']."/pages/navbar.php"; ?>
 

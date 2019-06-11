@@ -1,20 +1,22 @@
 <?php
-	include $_SERVER['DOCUMENT_ROOT']."/classes/student.php";
-	session_start();
+	include_once $_SERVER['DOCUMENT_ROOT']."/classes/student.php";
+	if(!isset($_SESSION)) { session_start(); }
 
-	// Activate error checking and perform student's signUp
-	$_SESSION['error'] = FALSE;
-	$_SESSION["student"]->signUp($_POST['inputName'],
-								$_POST['inputNickname'],
-								$_POST['inputPassword'],
-								$_POST['inputEmail']);
+	$name = $_POST['inputName'];
+	$nickname = $_POST['inputNickname'];
+	$password = $_POST['inputPassword'];
+	$mail = $_POST['inputEmail'];
+
+	$student = new Student();
+	$_SESSION["error"] = !$student->signUP($name, $nickname, $password, $mail);
 
 	// If has an error, reload page
-	if($_SESSION['error'] == TRUE){
+	if($_SESSION["error"] == TRUE){
 		header("Location: /pages/signUp.php");
 	}
 	// if not go to student's profile page.
 	else{
-		header("Location: /pages/profile.php");		
+		$_SESSION['student'] = $student;
+		header("Location: /pages/main.php");		
 	}
 ?>

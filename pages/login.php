@@ -11,16 +11,36 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 
 	<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="style.css">
 	<title>Login - Uni Escambo</title>
+
+	<link rel="stylesheet" href="style.css">
+	<style type="text/css">
+		.content {
+			padding-top: 10%;
+			text-align: center;
+			text-shadow: 3px 3px 10px rgba(0, 0, 0, 1);
+		}
+		.form-control {
+			width: 25%;
+		}
+		input, button {
+			box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+		}
+		#info{
+			font-weight: bold;
+		}
+	</style>
+	
 </head>
 <body>
-	<!-- Load navbar -->
+	<!-- Load navbar and Background-->
 	<?php 
-		include $_SERVER['DOCUMENT_ROOT']."/pages/navbar.php";
+		include $_SERVER['DOCUMENT_ROOT']."/pages/navbar.php"; 
+		include $_SERVER['DOCUMENT_ROOT']."/pages/back.php"; 
+		if(!isset($_SESSION)) { session_start(); }
 
 		$class = "form-control mx-auto my-1";
-		if($_SESSION['error'] == TRUE){
+		if(isset($_SESSION['error']) && $_SESSION['error'] == TRUE){
 			$class .= " is-invalid";
 			$_SESSION['error'] = FALSE;
 		}
@@ -30,11 +50,17 @@
 	<div class="row">
 	<div class="col-lg-12">
 	<div class="content">
+	<h5 class="text-light">Insira seu Apelido / E-mail e Senha:</h5> <br>
 	<form action="/actions/loginStudent.php" method="POST">
 		<input type="text" class="<?php echo $class?>" name="inputNickmail" placeholder="Email / Apelido" required>
     	<input type="password" class="<?php echo $class?>" name="inputPassword" placeholder="Senha" required>
-		<button id="invalidLogin" type="submit" class="btn btn-primary">Entrar</button>
+    	<div class="custom-control custom-checkbox">
+			<input type="checkbox" class="custom-control-input" name="remember" id="remember">
+			<label class="custom-control-label text-light" for="remember">Mantenha-me conectado</label>
+		</div>
+		<br><button id="invalidLogin" type="submit" class="btn btn-primary">Entrar</button>
 	</form>
+	<br><h6 class="text-light">Caso você não faça parte da nossa plataforma, <br> clique no botão de <span id="info">"Cadastre-se"</span> no topo da página.</h6>
  	</div>
 	</div>
 	</div>

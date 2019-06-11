@@ -1,7 +1,7 @@
-CREATE DATABASE UNIESCAMBO;
+CREATE DATABASE UNIESCAMBO CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE University(
-	id VARCHAR(8) NOT NULL,
+	id INT NOT NULL AUTO_INCREMENT,
 	name VARCHAR(100) NOT NULL,
 	link VARCHAR(100), # Can be a link to the website of this University  
 	about VARCHAR(500), # Little text with a description of this University
@@ -12,7 +12,7 @@ CREATE TABLE University(
 );
 
 CREATE TABLE Program(
-	id VARCHAR(8) NOT NULL,
+	id INT NOT NULL AUTO_INCREMENT,
 	name VARCHAR(100) NOT NULL,
 	about VARCHAR(500), # Little text with a description of this Program
 
@@ -20,7 +20,7 @@ CREATE TABLE Program(
 );
 
 CREATE TABLE Course(
-	id VARCHAR(8) NOT NULL,
+	id INT NOT NULL AUTO_INCREMENT,
 	name VARCHAR(100) NOT NULL,
 	about VARCHAR(500), # Little text with a description of this Course
 
@@ -34,8 +34,8 @@ CREATE TABLE Student(
 	mail VARCHAR(50) NOT NULL,
 	link VARCHAR(100), # Can be a link to the website of this Student  
 	about VARCHAR(500), # Little text with a description of this Student
-	university VARCHAR(8), # This Student studies in an University
-	program VARCHAR(8),  # This Student belongs to a Program
+	university INT, # This Student studies in an University
+	program INT,  # This Student belongs to a Program
 	photo BINARY,
 
 	PRIMARY KEY (nickname, mail),
@@ -50,7 +50,7 @@ CREATE TABLE Student(
 # It's a relationship between a Student and a Course
 CREATE TABLE Student_Course(
 	student VARCHAR(20) NOT NULL,
-	course VARCHAR(8) NOT NULL,
+	course INT NOT NULL,
 
 	PRIMARY KEY (student, course),
 	FOREIGN KEY (student) REFERENCES Student (nickname)
@@ -74,14 +74,19 @@ CREATE TABLE Admin(
 
 # Material with Text and/or Files containing information about a Course
 CREATE TABLE Material(
-	id VARCHAR(16) NOT NULL,
+	id INT NOT NULL AUTO_INCREMENT,
 	title VARCHAR(100) NOT NULL,
 	info TEXT NOT NULL,
-	university VARCHAR(8),
-	program VARCHAR(8),
-	course VARCHAR(8),
-
+	publish DATETIME NOT NULL,
+	student VARCHAR(20),
+	university INT,
+	program INT,
+	course INT,
+	
 	PRIMARY KEY (id),
+	FOREIGN KEY (student) REFERENCES Student (nickname)
+	ON DELETE SET NULL
+	ON UPDATE CASCADE,
 	FOREIGN KEY (university) REFERENCES University (id)
 	ON DELETE SET NULL
 	ON UPDATE CASCADE,
@@ -95,7 +100,7 @@ CREATE TABLE Material(
 
 # It's a relationship between a Student and a Material
 CREATE TABLE Material_Student(
-	material VARCHAR(16) NOT NULL,
+	material INT NOT NULL,
 	student VARCHAR(20) NOT NULL,
 	feedback BOOLEAN,
 	comment TEXT,
@@ -111,8 +116,8 @@ CREATE TABLE Material_Student(
 
 # A File that belongs to a Material
 CREATE TABLE File(
-	id VARCHAR(4) NOT NULL,
-	material VARCHAR(16) NOT NULL,
+	id INT NOT NULL AUTO_INCREMENT,
+	material INT NOT NULL,
 	file BINARY NOT NULL,
 	
 	PRIMARY KEY (id, material),
