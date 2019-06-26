@@ -7,13 +7,19 @@ class Material{
 	private $info;
 	private $publish;
 	private $student;
-	private $university;
-	private $program;
-	private $course;
+	private $university = null;
+	private $program = null;
+	private $course = null;
 
 	# Getters
+	public function getId(){ return $this->id; }
 	public function getTitle(){ return $this->title; }
 	public function getInfo(){ return $this->info; }
+	public function getDate(){ return date("d/m/Y H:i", strtotime($this->publish)); }
+	public function getStudent(){ return $this->student; }
+	public function getUniversity() { return $this->university; }
+	public function getProgram() { return $this->program; }
+	public function getCourse() { return $this->course; }
 
 	public function load($id){
 		$command = "SELECT * FROM Material WHERE id = $id";
@@ -34,21 +40,19 @@ class Material{
 			return TRUE;
 		}
 
-		echo "Error loading the Material.";
 		return FALSE;
 	}
 
 	public function upload($title, $info, $student, $university, $program, $course){
-		$auxStu = ($student == null) ? "NULL" : '$student';
+		$auxStu = ($student == null) ? "NULL" : $student;
 		$auxUni = ($university == null) ? "NULL" : $university;
 		$auxPro = ($program == null) ? "NULL" : $program;
 		$auxCou = ($course == null) ? "NULL" : $course;
-		$auxPub = date("Y-m-d H:i:s");
 
 		$command = "INSERT INTO Material
 		(title, info, publish, student, university, program, course)
 		VALUES
-		('$title', '$info', '$auxPub', $auxStu, $auxUni, $auxPro, $auxCou)";
+		('$title', '$info', NOW(), '$auxStu', $auxUni, $auxPro, $auxCou)";
 		$db = new Database();
 		$returnedId = $db->insert($command);
 
@@ -56,48 +60,15 @@ class Material{
 			$this->id = $returnedId;
 			$this->title = $title;
 			$this->info = $info;
-			$this->publish = $auxPub;
 			$this->student = $student;
 			$this->university = $university;
 			$this->program = $program;
 			$this->course = $course;
 			return TRUE;
 		}
+
 		return FALSE;
 	}
-
-	public function search($text, $student, $university, $program, $course){
-		$command = "SELECT id FROM Material WHERE ";
-		$command .= ($student == null)    ? "" : "student = '$student' AND ";
-		$command .= ($university == null) ? "" : "university = $university AND ";
-		$command .= ($program == null)    ? "" : "program = $program AND ";
-		$command .= ($course == null)     ? "" : "course = $course AND ";
-
-		$db = new Database();
-
-		$materials = array();
-		$wordList = explode(" ", $text);
-		foreach($wordList as $key => $word) {
-			if(strlen($word) > 2){
-				$result = $db->runCommand($command
-						. "(title LIKE '%$word%' OR info LIKE '%$word%')");
-				if($result == TRUE){
-					for($i = 0; $i < $result->num_rows; $i++) { 
-						$materialDB = $result->fetch_assoc();
-						$id = $materialDB['id'];
-						if (isset($materials[$id]))
-							$materials[$id]++;
-						else
-							$materials[$id] = 1;
-					}
-				}
-			}
-		}
-
-		arsort($materials);
-		return $materials;
-	}
-
 
 }
 ?>

@@ -13,7 +13,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 	<title>Login - Uni Escambo</title>
 
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="/pages/style.css">
 	<style type="text/css">
 		.content {
 			padding-top: 10%;
@@ -35,8 +35,8 @@
 <body>
 	<!-- Load navbar and Background-->
 	<?php 
-		include $_SERVER['DOCUMENT_ROOT']."/pages/navbar.php"; 
-		include $_SERVER['DOCUMENT_ROOT']."/pages/back.php"; 
+		include $_SERVER['DOCUMENT_ROOT']."/pages/_navbar.php"; 
+		include $_SERVER['DOCUMENT_ROOT']."/pages/_back.php"; 
 		if(!isset($_SESSION)) { session_start(); }
 
 		$class = "form-control mx-auto my-1";

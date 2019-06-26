@@ -10,7 +10,7 @@
 
 	// If has an error, reload page
 	if($_SESSION["error"] == TRUE){
-		header("Location: /pages/login.php");
+		header("Location: /index.php?page=login");
 	}
 	// if not go to student's profile page.
 	else{
@@ -19,6 +19,6 @@
 			// Expire in 1 day
 			setcookie("user", $student->getCookie(), time() + (86400 * 30), "/");
 		}
-		header("Location: /pages/main.php");
+		header("Location: /index.php?page=main");
 	}
 ?>

@@ -28,6 +28,7 @@ class Database{
 		}
 		$conn->set_charset('utf8');
 
+
 		$result = $conn->query($command);
 		if ($result == FALSE){
 		    echo "Error: " . $command . "<br>" . $conn->error;
@@ -44,6 +45,7 @@ class Database{
 		if ($conn->connect_error){
 	    	die("Connection failed: " . $conn->connect_error);
 		}
+		$conn->set_charset('utf8');
 
 		$result = $conn->query($command);
 		if ($result == FALSE){

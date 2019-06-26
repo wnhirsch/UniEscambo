@@ -6,19 +6,23 @@ class Student{
 	private $nickname;
 	private $password;
 	private $mail;
-	private $link;
-	private $about;
-	private $university;
-	private $program;
-	private $photo;
-	private $courses;
+	private $link = "";
+	private $about = "";
+	private $university = null;
+	private $program = null;
+	private $courses = array();
 	private $status = FALSE;
 
 	# Getters
 	public function getName() { return $this->name; }
+	public function getNickname() { return $this->nickname; }
+	public function getMail() { return $this->mail; }
+	public function getLink() { return $this->link; }
+	public function getAbout() { return $this->about; }
+	public function getUniversity() { return $this->university; }
+	public function getProgram() { return $this->program; }
 	public function getCourses() { return $this->courses; }
 	public function getCookie(){ return "$this->nickname $this->password"; }
-
 	public function isOnline() { return $this->status; }
 
 	public function login($nickmail, $password){
@@ -46,7 +50,7 @@ class Student{
 			$this->program = $studentDB['program'];
 			$this->photo = $studentDB['photo'];
 			$this->status = TRUE;
-			$this->getCourse();
+			$this->loadCourses();
 			return TRUE;
 		}
 		return FALSE;
@@ -71,42 +75,14 @@ class Student{
 		return FALSE;
 	}
 
-	public function addCourse($id){
-		if($status == FALSE){
-			echo "User offline.";
-			return FALSE;
-		}
-
-		$command = "INSERT INTO Student_Course (course, student)
-		VALUES ($id, '$nickname')";
-		$db = new Database();
-		$result = $db->runCommand($command);
-
-		if($result == TRUE){
-			$this->courses[count($this->courses)] = $id;
+	public function lessInfo(){
+		if($this->link == null || $this->about == null || $this->university == null
+			|| $this->program == null || $this->photo == null){
 			return TRUE;
 		}
-		return FALSE;
-	}
-
-	public function remCourse($id){
-		if($status == FALSE){
-			echo "User offline.";
+		else {
 			return FALSE;
 		}
-
-		$command = "DELETE FROM Student_Course
-		WHERE course = $id AND student = '$nickname')";
-		$db = new Database();
-		$result = $db->runCommand($command);
-
-		if($result == TRUE){
-			if (($key = array_search($id, $this->courses)) !== false) {
-			    unset($this->courses[$key]);
-			}
-			return TRUE;
-		}
-		return FALSE;
 	}
 
 	# Verify if this user already exists on the database
@@ -124,7 +100,14 @@ class Student{
 		}
 	}
 
-	private function getCourse(){
+	public function isSubscribed($course){
+		if(isset($this->courses[$course]))
+			return TRUE;
+		else
+			return FALSE;
+	}
+
+	public function loadCourses(){
 		$command = "SELECT course FROM Student_Course
 		WHERE student = '$this->nickname'";
 
@@ -132,8 +115,34 @@ class Student{
 		$result = $db->runCommand($command);
 		for ($i = 0; $i < $result->num_rows; $i++) {
 			$row = $result->fetch_assoc();
-			$this->courses[$i] = $row['course'];
+			$this->courses[$row['course']] = TRUE;
 		}
+	}
+
+	public function addCourse($id){
+		$command = "INSERT INTO Student_Course (course, student)
+		VALUES ($id, '$this->nickname')";
+		$db = new Database();
+		$result = $db->runCommand($command);
+
+		if($result == TRUE){
+			$this->courses[$id] = TRUE;
+			return TRUE;
+		}
+		return FALSE;
+	}
+
+	public function remCourse($id){
+		$command = "DELETE FROM Student_Course
+		WHERE (course = $id AND student = '$this->nickname')";
+		$db = new Database();
+		$result = $db->runCommand($command);
+
+		if($result == TRUE){
+			unset($this->courses[$id]);
+			return TRUE;
+		}
+		return FALSE;
 	}
 
 }
