@@ -28,7 +28,6 @@ class Database{
 		}
 		$conn->set_charset('utf8');
 
-
 		$result = $conn->query($command);
 		if ($result == FALSE){
 		    echo "Error: " . $command . "<br>" . $conn->error;

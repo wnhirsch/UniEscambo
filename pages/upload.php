@@ -31,7 +31,7 @@ if(isset($_SESSION['error']) && $_SESSION['error'] == TRUE){
 }
 
 $uniList = getAll_Uni();
-$programList = getAll_Program();
+$progList = getAll_Program();
 $courseList = getAll_Course();
 ?>
 
@@ -56,7 +56,7 @@ $courseList = getAll_Course();
 		</select>
 		<select class="custom-select my-1" name="inputProgram">
 		    <option value="null" selected>Escolha um Curso</option>
-<?php foreach ($programList as $id => $name) { ?>
+<?php foreach ($progList as $id => $name) { ?>
 		    <option value="<?php echo $id; ?>"><?php echo $name; ?></option>
 <?php } ?>
 		</select>

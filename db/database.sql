@@ -1,4 +1,5 @@
 CREATE DATABASE UNIESCAMBO CHARACTER SET utf8 COLLATE utf8_general_ci;
+-- ALTER DATABASE `OcREbskFYD`CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE University(
 	id INT NOT NULL AUTO_INCREMENT,
@@ -36,7 +37,7 @@ CREATE TABLE Student(
 	university INT, # This Student studies in an University
 	program INT,  # This Student belongs to a Program
 
-	PRIMARY KEY (nickname, mail),
+	PRIMARY KEY (nickname),
 	FOREIGN KEY (university) REFERENCES University (id)
 	ON DELETE RESTRICT
 	ON UPDATE CASCADE,

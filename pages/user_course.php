@@ -37,7 +37,7 @@ if(!isset($_SESSION)) { session_start(); }
 $results = $_SESSION["student"]->getCourses();
 $status = (count($results) > 0) ? "Disciplinas que você está matriculado. Se quiser buscar outras, utilize a aba de pesquisa acima." : "Você não se matriculou em nenhuma Disciplina. Utilize a aba acima para buscar por elas.";
 ?>
-	<h5 class="my-4"> <?php echo $status; ?></h5>
+	<h4 class="container my-4"> <?php echo $status; ?></h4>
 <?php
 if(count($results) > 0){
 	include_once $_SERVER['DOCUMENT_ROOT']."/pages/_miniCourse.php";

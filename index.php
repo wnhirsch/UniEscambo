@@ -16,7 +16,6 @@
 		else{
 			setcookie("user", "", time() - 3600); // Delete cookie
 		}
-
 	}
 	if(!isset($_SESSION["error"])){ $_SESSION["error"] = FALSE; }
 

@@ -53,7 +53,7 @@ function search($text, $option){
 }
 
 function getAll_Uni(){
-	$command = "SELECT id, name FROM University";
+	$command = "SELECT id, name FROM University ORDER BY name ASC";
 	$db = new Database();
 	$conn = $db->runCommand($command);
 
@@ -71,7 +71,7 @@ function getAll_Uni(){
 }
 
 function getAll_Program(){
-	$command = "SELECT id, name FROM Program";
+	$command = "SELECT id, name FROM Program ORDER BY name ASC";
 	$db = new Database();
 	$conn = $db->runCommand($command);
 
@@ -89,7 +89,7 @@ function getAll_Program(){
 }
 
 function getAll_Course(){
-	$command = "SELECT id, name FROM Course";
+	$command = "SELECT id, name FROM Course ORDER BY name ASC";
 	$db = new Database();
 	$conn = $db->runCommand($command);
 

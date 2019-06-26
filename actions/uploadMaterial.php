@@ -1,20 +1,24 @@
 <?php
+	// Import necessary files
 	include_once $_SERVER['DOCUMENT_ROOT']."/classes/student.php";
 	include_once $_SERVER['DOCUMENT_ROOT']."/classes/material.php";
 	include_once $_SERVER['DOCUMENT_ROOT']."/classes/file.php";
-
 	if(!isset($_SESSION)) { session_start(); }
 
-	$title = $_POST['inputTitle'];
-	$info = $_POST['inputInfo'];
-	$student = $_SESSION["student"]->getNickname();
+	// Catch all values to upload a material
+	$title 		= $_POST['inputTitle'];
+	$info 		= $_POST['inputInfo'];
+	$student 	= $_SESSION["student"]->getNickname();
 	$university = $_POST['inputUni'];
-	$program = $_POST['inputProgram'];
-	$course = $_POST['inputCourse'];
+	$program 	= $_POST['inputProgram'];
+	$course 	= $_POST['inputCourse'];
+	unset($_POST);
 
+	// upload material
 	$material = new Material();
 	$_SESSION["error"] = !$material->upload($title, $info, $student, $university, $program, $course);
 
+	// upload files
 	if(isset($_FILES["inputFiles"])){
 		$target_dir = $_SERVER['DOCUMENT_ROOT']."/uploads/";
 		$matID = $material->getId();
@@ -34,7 +38,7 @@
 	if($_SESSION["error"] == TRUE){
 		header("Location: /index.php?page=upload");
 	}
-	// if not go to student's profile page.
+	// if not go to this material page.
 	else{
 		$matID = $material->getId();
 		header("Location: /index.php?page=show_material&&id=$matID&&now=");

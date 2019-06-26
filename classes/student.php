@@ -48,7 +48,6 @@ class Student{
 			$this->about = $studentDB['about'];
 			$this->university = $studentDB['university'];
 			$this->program = $studentDB['program'];
-			$this->photo = $studentDB['photo'];
 			$this->status = TRUE;
 			$this->loadCourses();
 			return TRUE;
@@ -75,14 +74,44 @@ class Student{
 		return FALSE;
 	}
 
+	public function edit($newName, $newPassword, $newMail, $newLink, $newAbout,
+		$newUniversity, $newProgram, $actualPassword){
+		if($this->password == $actualPassword){
+			$newPassword 	= ($newPassword == "") 	? $this->password : $newPassword;
+
+			$newUniversity 	= ($newUniversity == "null") ? $this->university : $newUniversity;
+			$newUniversity 	= ($newUniversity == null) ? "NULL" : $newUniversity;
+
+			$newProgram 	= ($newProgram == "null") ? $this->program : $newProgram;
+			$newProgram 	= ($newProgram == null) ? "NULL" : $newProgram;
+
+			$command = "UPDATE Student
+			SET name = '$newName', password = '$newPassword', mail = '$newMail',
+			link = '$newLink', about = '$newAbout', university = $newUniversity,
+			program = $newProgram WHERE nickname = '$this->nickname'";
+			$db = new Database();
+		 	$result = $db->runCommand($command);
+
+		 	echo $result;
+
+		 	if($result == TRUE){
+		 		$this->name = $newName;
+				$this->password = $newPassword;
+				$this->mail = $newMail;
+				$this->link = $newLink;
+				$this->about = $newAbout;
+				$this->university = ($newUniversity == "NULL") ? null : $newUniversity;
+				$this->program = ($newProgram == "NULL") ? null : $newProgram;
+			 	return TRUE;
+		 	}
+		}
+
+		return FALSE;
+	}
+
 	public function lessInfo(){
-		if($this->link == null || $this->about == null || $this->university == null
-			|| $this->program == null || $this->photo == null){
-			return TRUE;
-		}
-		else {
-			return FALSE;
-		}
+		return ($this->link == "" || $this->about == "" || $this->university == null
+				|| $this->program == null);
 	}
 
 	# Verify if this user already exists on the database

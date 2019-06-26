@@ -1,0 +1,4 @@
+FTP Username: epiz_24103868
+FTP Password: zr3q6d8j
+FTP Hostname: ftp.epizy.com
+FTP Port (optional): 21
