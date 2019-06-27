@@ -4,6 +4,12 @@
 
 #### Funcionalities
 * Login/SignUp users
+* Upload Materials
+* Search Materials/Courses/Programs/Universities
+* Download Files
+* Subscribe/Unsubscribe Courses
+* See your Profile
+* Se your Upload History
 
 #### Hierarchy
 Our code is divided by some folders with a name representing its function inside everything:
@@ -11,6 +17,6 @@ Our code is divided by some folders with a name representing its function inside
 * "classes" has the declarations of all main objects of the system.
 * "db" has everything relationed to the database, SQL and PHP code. 
 * "media" has images, videos and files that are important to the system.
-* "pages" has the HTML code of each page of the system.
-* "index.php" is the 'main()' that init the system. It initializes the session variables and load the home page.
-This code was planned for the user to only see what is in the "pages" folder. When an operation is called, the actual page calls a particular PHP file that calls another and so on, but, in the end, the result will be shown on the same or another file on the "pages" folder.
+* "pages" has the HTML code of each page of the system. Files whose the name begins with the character "\_" are auxiliary files that exists to shrink the code of the another pages.
+* "index.php" is the 'main()' that init the system. It initializes the session variables and load all other pages.
+This code was planned for the user to only see the "index.php" file. When an operation is called, the actual page calls a particular PHP file that calls another and so on, but, in the end, the result will be shown in the "index.php" that will call the correct page including it.
