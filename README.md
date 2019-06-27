@@ -6,10 +6,10 @@
 * Login/SignUp users
 * Upload Materials
 * Search Materials/Courses/Programs/Universities
-* Download Files
+* Upload/Download Files
 * Subscribe/Unsubscribe Courses
-* See your Profile
-* Se your Upload History
+* See/Edit your Profile
+* See your Upload History
 
 #### Hierarchy
 Our code is divided by some folders with a name representing its function inside everything:
