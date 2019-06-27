@@ -1,0 +1,127 @@
+# A seguir apresentaremos cada um dos Casos de Uso exigidos e quais foram inteiramente e parcialmente implementados e também os que não foram implementados.
+
+
+# Resumo Geral:
+- Existem 29 casos de uso
+- 5 deles foram inteiramente implementados
+- 4 deles foram parcialmente implementados
+- e os outros 20 não foram implementados
+- O fator mais importante que resultou nesses números foi a ausência do usuário Administrador
+- Junto a isso, não implementamos também a interação entre usuários e as diversas operações sobre os materiais como Like, Deslike, Comentário, Denúncia, Favoritar, etc.
+
+
+* UC-01 (Essencial): Efetuar login (Administrador e Aluno) 
+- Parcialmente Implementado
+- Somente o processo de login do usuário Aluno foi impementado, do Administrador não.
+
+* UC-02 (Essencial): Cadastrar Aluno (Aluno) 
+- Implementado
+- O Sistema consegue cadastrar um aluno.
+
+* UC-03 (Essencial): Fazer upload de material (Aluno) 
+- Implementado
+- O Sistema consegue realizar o upload de um material.
+
+* UC-04 (Importante): Matricular em disciplina (Aluno)
+- Implementado
+- O Sistema consegue efetuar o cadastro de um Aluno a uma Disciplina.
+
+* UC-05 (Útil): Desmatricular de disciplina
+- Implementado
+- O Sistema consegue efetuar a exclusão de um Aluno a uma Disciplina.
+
+* UC-06 (Essencial): Pesquisar materiais (Administrador e Aluno)
+- Parcialmente Implementado
+- Somente a possibilidade de busca de materiais do usuário Aluno foi impementada, do Administrador não.
+
+* UC-07 (Essencial): Visualizar materiais (Administrador e Aluno)
+- Parcialmente Implementado
+- Somente a visualização de materiais do usuário Aluno foi impementada, do Administrador não.
+
+* UC-08 (Útil): Visualizar favoritos (Aluno)
+- Não Implementado
+- Tal funcionalidade não existe no sistema.
+
+* UC-09 (Útil): Visualizar histórico de uploads (Aluno)
+- Implementado
+- O usuário pode visualizar seu histórico de uploads.
+
+* UC-10 (Útil): Favoritar material (Aluno)
+- Não Implementado
+- Tal funcionalidade não existe no sistema.
+
+* UC-11 (Importante): Comentar em material (Aluno)
+- Não Implementado
+- Tal funcionalidade não existe no sistema.
+
+* UC-12 (Importante): Criar conexão entre alunos (Aluno)
+- Não Implementado
+- Tal funcionalidade não existe no sistema.
+
+* UC-13 (Importante): Adicionar interesse a conexão (Aluno)
+- Não Implementado
+- Tal funcionalidade não existe no sistema.
+
+* UC-14 (Útil): Curtir material (Aluno)
+- Não Implementado
+- Tal funcionalidade não existe no sistema.
+
+* UC-15 (Útil): Descurtir material (Aluno)
+- Não Implementado
+- Tal funcionalidade não existe no sistema.
+
+* UC-16 (Essencial): Denunciar material (Aluno)
+- Não Implementado
+- Tal funcionalidade não existe no sistema.
+
+* UC-17 (Útil): Desfavoritar material (Aluno)
+- Não Implementado
+- Tal funcionalidade não existe no sistema.
+
+* UC-18 (Útil): Sugerir nova disciplina (Aluno)
+- Não Implementado
+- Tal funcionalidade não existe no sistema.
+
+* UC-19 (Útil): Adicionar material à conexão (Aluno)
+- Não Implementado
+- Tal funcionalidade não existe no sistema.
+
+* UC-20 (Essencial): Cadastrar admin (Administrador)
+- Não Implementado
+- O usuário Administrador não existe no sistema.
+
+* UC-21 (Essencial): Processar denúncias (Administrador)
+- Não Implementado
+- O usuário Administrador não existe no sistema.
+
+* UC-22 (Essencial): Retirar material do sistema (Administrador)
+- Não Implementado
+- O usuário Administrador não existe no sistema.
+
+* UC-23 (Importante): Visualizar informações de aluno (Administrador)
+- Não Implementado
+- O usuário Administrador não existe no sistema.
+
+* UC-24 (Essencial): Suspender aluno (Administrador)
+- Não Implementado
+- O usuário Administrador não existe no sistema.
+
+* UC-25 (Essencial): Banir aluno (Administrador)
+- Não Implementado
+- O usuário Administrador não existe no sistema.
+
+* UC-26 (Essencial): Cadastrar disciplina (Administrador)
+- Não Implementado
+- O usuário Administrador não existe no sistema.
+
+* UC-27 (Essencial): Cadastrar universidade (Administrador)
+- Não Implementado
+- O usuário Administrador não existe no sistema.
+
+* UC-28 (Essencial): Fazer sign out (Administrador e Aluno)
+- Parcialmente Implementado
+- Somente o processo de sign out do usuário Aluno foi impementado, do Administrador não.
+
+* UC-29 (Importante): Visualizar comentários (Administrador e Aluno)
+- Não Implementado
+- Possibilidade de comentar em materiais não foi implementado no sistema.
